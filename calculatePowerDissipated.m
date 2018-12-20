@@ -10,7 +10,7 @@ ridiculousMass = 1000000; % kg - keeps the satellite in the same trajectory
 
 % Satellite parameters
 settings = getDefaultSimulatorValues();
-massOfSat = settings.mass; % kg
+massOfSat = settings.cubesatMass; % kg
 massOfWeight = 0.05; % kg
 
 % Material properties

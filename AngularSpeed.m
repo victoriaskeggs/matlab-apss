@@ -1,24 +1,33 @@
-function rev = AngularSpeed(T_net)
+function rev = AngularSpeed(values, timestep)
 % This script calculates the minimum maximum angular orbital speed that the
 % satellite will need to rotate at in order to keep spinning past the point
 % of maximum torque.
 
+% Find the maximum torque from the system
+states = simulate(values, timestep);
+T_net = max(arrayfun(@(state) state.netTorque.length(), states));
+
 % Define constants
-d = 0.0005; % diameter of the tether (m)
-density = 0.0012; % linear density of the cubesat (kg/m)
-m_cube = 1.2; % mass of the cubesat (kg)
-L_cube = 0.01; % length of cube (m)
-L_tether = 200; % length of the tether (m)
-m_tether_1 = density * L_tether; % mass of the tether
+d = values.diameter; % diameter of the tether (m)
+l_density = values.density * pi * (d/2)^2; % linear density of the cubesat (kg/m)
+m_cube = values.mass - values.maxTetherMass - values.massOfWeight; % mass of the cubesat (kg)
+l_cube = values.cubesatLength; % length of cube (m)
+m_tether = values.length * l_density; % mass of the tether (kg)
+
+% COM of the system - distance from the centre of mass of the cubesat to
+% the centre of mass of the system
+com = (l_cube + values.length)*(m_tether / ( 2 * (m_cube + m_tether)));
 
 % Inertia of a cube rotating about its centre of mass
-I_cube_com = m_cube*L_cube^2/6;
+I_cube_com = m_cube*l_cube^2/6;
 
 % Intertia of a cube rotating about the centre of mass of the system
-I_cube = I_cube_com + m_cube*d^2;
+I_cube = I_cube_com + m_cube*com^2;
 
 % Inertia of the tether
-I_tether = m_tether_1*L_tether^2/3;
+x = com - l_cube/2; % distance from the point where the tether joins the 
+                    % CubeSat to the centre of mass of the system
+I_tether = l_density((values.length - x)^3 + x^3)/3;
 
 % Total inertia of the system
 I = I_cube_com + I_cube + I_tether;
@@ -30,4 +39,3 @@ wmax = sqrt(2*pi()*T_net/I); % rad s-1
 rev = wmax*60*90/(2*pi());
 
 end
-

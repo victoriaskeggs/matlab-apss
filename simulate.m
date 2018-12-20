@@ -1,4 +1,10 @@
 function [states] = simulate(settings, simTimestep)
+% Takes a settings struct, converts it into the Java objects needed to run the
+% simulation. 
+
+% This function then takes the output from the Java code and
+% converts it into an array of structs, each struct holding the state of
+% the satellite at that time.
 
 %import brownshome.apss.* java.time.Duration
 import brownshome.apss.* java.time.*
