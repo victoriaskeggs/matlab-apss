@@ -1,4 +1,7 @@
 function values = getDefaultSimulatorValues
+% This function returns a struct containing the default values of the
+% satellite system.
+
     values = struct( ...
         'mass', 1.3, ...            % kg, this is the maximum allowable mass of the system
         'massOfWeight', 0.05, ...   % kg

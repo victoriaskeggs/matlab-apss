@@ -6,7 +6,6 @@ function [states] = simulate(settings, simTimestep)
 % converts it into an array of structs, each struct holding the state of
 % the satellite at that time.
 
-%import brownshome.apss.* java.time.Duration
 import brownshome.apss.* java.time.*
 
 if settings.towardsEarth

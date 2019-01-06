@@ -1,3 +1,5 @@
+% This script plots the temperature of the tether over time.
+
 %input parameters
 %constants
 sigma = 5.67*10^-8; %W/m^2.K^4, Stefan-Boltzmann constant
@@ -36,7 +38,3 @@ axis([0 period*2 0 400])
 title('Heat of cable over time')
 xlabel('Time from intial condition (s)')
 ylabel('Temperature (K)')
-
-
-
-

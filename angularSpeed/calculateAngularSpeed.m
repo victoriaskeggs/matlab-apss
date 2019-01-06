@@ -1,7 +1,11 @@
-function rev = AngularSpeed(values, timestep)
+function rev = calculateAngularSpeed(values, timestep)
 % This script calculates the minimum maximum angular orbital speed that the
 % satellite will need to rotate at in order to keep spinning past the point
 % of maximum torque.
+
+% Input:    values      a struct containing satellite properties
+%           timestep    the number of
+% Output:   rev         the angular speed of the tether in revolutions per minute
 
 % Find the maximum torque from the system
 states = simulate(values, timestep);

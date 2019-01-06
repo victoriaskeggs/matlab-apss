@@ -1,7 +1,7 @@
-function [ minLength, maxLength ] = CalculateMaxLengthDueToVolume( diameter )
-%Calculates the length of tether wound in a cylindrical spool
-%Assumes the wire is wrapped in perfect circles in the spool
-%dimensions in mm
+function [ minLength, maxLength ] = calculateMaxLengthDueToVolume( diameter )
+% Calculates the length of tether wound in a cylindrical spool
+% Assumes the wire is wrapped in perfect circles in the spool
+% dimensions in mm
 
 radius = 20; %of Spool
 width = 60; %of Spool

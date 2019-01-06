@@ -1,3 +1,12 @@
+% This script plots the equilibrium position of the tether in the case
+% where the tether is pointing towards earth.
+
+% TODO: 
+% 1.    Rewrite this script to use the settings struct for satellite
+%       parameters
+% 2.    Replace hardcoded w variable with a call to calculateAngularSpeed()
+% 3.    Finish this script!
+
 %Rs_central = 6783600; % radius from the earth in m
 r_satellite = 6771000; % radius from the earth in m
 
@@ -18,14 +27,14 @@ r = linspace(r_low, r_high, N);
 theta = zeros(N);
 
 for i = 1:N
-    theta(i) = AngleOfCable(r(i));
+    theta(i) = angleOfTetherTowardsEarth(r(i));
 end
 
 tension_accumulation = zeros(num_candidates);
 
 % Integrate tension from the satellite end
 for i = 2:N
-    dt = CalculateDeltaTension( theta(i), r(i), (r_high - r_low) / N );
+    dt = calculateDeltaTension( theta(i), r(i), (r_high - r_low) / N );
     tension_accumulation(i) = tension_accumulation(i) + dt;
 end
 
@@ -34,7 +43,7 @@ end
 for i = 1 : num_candidates
     r = Rs_candidates(i);
     
-    theta_values(i) = AngleOfCable(r);
+    theta_values(i) = angleOfTetherTowardsEarth(r);
     
     satelliteTension = (m_sat * w^2 * r - (mu * m_sat) / r^2 )/cos(theta_values(i));
 
@@ -47,11 +56,11 @@ for i = 1 : num_candidates
     final_T_values = zeros(num_candidates);
     for j = 1 : dl_num
         r_values(j) = current_r;
-        theta = AngleOfCable(current_r);
+        theta = angleOfTetherTowardsEarth(current_r);
         current_r = r - L/dl_num * cos(theta);
     end
     
-    theta = AngleOfCable(current_r);
+    theta = angleOfTetherTowardsEarth(current_r);
     final_T = (m_sat * w^2 * current_r - (mu * m_sat) / current_r^2 )/cos(theta);
     final_T_values(i) = final_T;
     

@@ -1,7 +1,8 @@
-function maxStress = findMaxStress(diameter, density, L)
+function maxStress = findMaxStress(diameter, density, L, massOfSat, massOfWeight)
+% This function finds the maximum stress in the tether (Pa)
 
-m1 = 1; %kg, sat
-m2 = 0.3; %kg, weight
+m1 = massOfSat; %kg, sat
+m2 = massOfWeight; %kg, weight
 r1 = 400000; %m, rad of sat end from earth center
 %L = 100; %m, length of tether
 rho = density*pi/4*diameter^2; %kg/m, linear density of tether
@@ -24,4 +25,4 @@ r = linspace(r2,r1,100);
 c = T1 + r1^2*omega^2*rho/2 + mu*rho/r1;
 T = -r.^2 * omega^2 * rho / 2 - mu * rho ./ r + c;
 stress = T/(pi/4*diameter^2);
-maxstress = max(stress);
+maxStress = max(stress);

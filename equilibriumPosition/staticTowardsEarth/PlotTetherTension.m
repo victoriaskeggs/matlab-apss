@@ -1,12 +1,14 @@
-function maxStress = findMaxStress(diameter, density, L, massOfSat, massOfWeight)
+% This script plots the tension in the tether along the length of the
+% tether.
 
-m1 = massOfSat; %kg, sat
-m2 = massOfWeight; %kg, weight
+% TODO: update constants to default simulator values
+
+m1 = 10; %kg, sat
+m2 = 1; %kg, weight
 r1 = 400000; %m, rad of sat end from earth center
-%L = 100; %m, length of tether
-rho = density*pi/4*diameter^2; %kg/m, linear density of tether
+L = 100; %m, length of tether
+rho = 9.8*10^-5; %kg/m, linear density of tether
 mu = 3.986004418*10^14; %earth grav parameter
-%diameter = 0.5*10^-3; %m
 
 mT = rho*L; %mass of tether
 
@@ -23,5 +25,5 @@ T2 = mu*m2/r2^2 - m2*r2*omega^2;  %tension at weight end
 r = linspace(r2,r1,100);
 c = T1 + r1^2*omega^2*rho/2 + mu*rho/r1;
 T = -r.^2 * omega^2 * rho / 2 - mu * rho ./ r + c;
-stress = T/(pi/4*diameter^2);
-maxStress = max(stress);
+
+plot(r,T)
