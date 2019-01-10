@@ -17,7 +17,8 @@ end
 orbitCharacteristics = OrbitCharacteristics(settings.eccentricity, settings.sma, ...
     settings.inclination, settings.argOfPeriapsis, settings.trueAnomaly, settings.longOfAscendingNode);
 
-satellite = Satellite(cableFunction, settings.bias, settings.mass, settings.diameter, settings.conductivity);
+satellite = Satellite(cableFunction, settings.bias, settings.mass, ...
+    settings.diameter, settings.conductivity, settings.density);
 
 rawOutput = APSSSimulator.runHeadlessSimulation(satellite, orbitCharacteristics, ...
     Duration.ofHours(6), Duration.ofSeconds(5), Duration.ofMillis(simTimestep));
