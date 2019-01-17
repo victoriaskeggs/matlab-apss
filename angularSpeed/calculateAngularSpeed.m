@@ -29,10 +29,10 @@ I_cube_com = m_cube*l_cube^2/6;
 % Intertia of a cube rotating about the centre of mass of the system
 I_cube = I_cube_com + m_cube*com^2;
 
-% Inertia of the tether
+% Inertia of the tether - assumes tether is straight
 x = com - l_cube/2; % distance from the point where the tether joins the 
                     % CubeSat to the centre of mass of the system
-I_tether = l_density((values.length - x)^3 + x^3)/3;
+I_tether = l_density * ((values.length - x)^3 + x^3)/3;
 
 % Total inertia of the system
 I = I_cube_com + I_cube + I_tether;
