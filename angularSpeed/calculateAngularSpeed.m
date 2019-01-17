@@ -4,7 +4,8 @@ function rev = calculateAngularSpeed(values, timestep)
 % of maximum torque.
 
 % Input:    values      a struct containing satellite properties
-%           timestep    the number of
+%           timestep    period of time between two internal states of the
+%                       simulation (in ms) - around 1000
 % Output:   rev         the angular speed of the tether in revolutions per minute
 
 % Find the maximum torque from the system

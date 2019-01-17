@@ -6,6 +6,9 @@ function [states] = simulate(settings, simTimestep)
 % converts it into an array of structs, each struct holding the state of
 % the satellite at that time.
 
+% Input: simTimestep    period of time between two internal states of the
+%                       simulation (in ms) - around 1000
+
 import brownshome.apss.* java.time.*
 
 if settings.towardsEarth
