@@ -3,20 +3,23 @@
 
 % TODO: update constants to default simulator values
 
-lengths = 0:1:1000;
+lengths = 0:1:2000;
 N = length(lengths);
 satTension = zeros(1, N);
 
+%todo input the diameter of the tether for accurate mass. 
+d = 0.0003; % m, diameter of the tether
 mTotal = 1.3; %kg, sat
 m2 = 0.05; %kg, weight
 r1 = 400000; %m, rad of sat end from earth center
-rho = 9.8*10^-5; %kg/m, linear density of tether
+rho = 1738; %kg/m^3, density of Mg
+A = (pi*d^2)/4; %m^2 cross sectional area of the tether assuming cylindrical
 mu = 3.986004418*10^14; %earth grav parameter
 
 % Length of the tether in metres
 for i=1:N
     L = lengths(i);
-    mT = rho*L; %mass of tether
+    mT = rho*L*A; %mass of tether
     m1 = mTotal - mT - m2; % mass of the satellite without tether
     
     r2 = r1-L;   %radius of weight from earth center
