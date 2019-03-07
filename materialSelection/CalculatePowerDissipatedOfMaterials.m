@@ -37,6 +37,7 @@ end
 blankStruct = struct('current', 0, 'force', 0, 'power', 0);
 maximumValue = repmat(blankStruct, 1, length(diameters));
 meanValue = repmat(blankStruct, 1, length(diameters));
+timeToSimulate = 6; % time in hours
 
 % Calculate max and min current, force and power dissipated for each
 % material at each diameter
@@ -50,7 +51,7 @@ for i = 1 : length(materials)
         settings.bias = 50;
         settings.mass = ridiculousMass;
         
-        [maximumValue(j), meanValue(j)] = stats(simulate(settings, 1000));
+        [maximumValue(j), meanValue(j)] = stats(simulate(settings, 1000, timeToSimulate));
     end
     
     % Plot power dissipated for the material

@@ -1,6 +1,7 @@
 % TODO: Add a comment describing what this script does.
 
 N = 25;
+timeToSimulate = 6; % time in hours
 
 % The length of the tether
 lengths = linspace(1, 100, N);
@@ -19,7 +20,7 @@ parfor l = 2:N
         settings.length = lengths(l);
         
         [maximum(b, l), mean(b, l)] = stats( ...
-            simulate(settings, 1000));
+            simulate(settings, 1000, timeToSimulate));
     end
 end
 

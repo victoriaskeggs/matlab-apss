@@ -4,6 +4,7 @@
 
 % Number of conductivities to analyse
 N = 100;
+timeToSimulate = 6; % time in hours
 
 conductivity = logspace(5, 8, N);
 
@@ -19,7 +20,7 @@ for i = 1:N
     settings.conductivity = conductivity(i);
     settings.bias = 50;
     
-    [maximumValue(i), meanValue(i)] = stats(simulate(settings, 1000));
+    [maximumValue(i), meanValue(i)] = stats(simulate(settings, 1000, timeToSimulate));
 end
 
 % Plot average and maximum power dissipated

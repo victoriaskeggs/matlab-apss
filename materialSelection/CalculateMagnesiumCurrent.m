@@ -9,7 +9,8 @@ settings.bias = 50;
 settings.mass = 1000000;
 
 % Run the simulation program
-states = simulate(settings, 1000);
+timeToSimulate = 6; % time in hours
+states = simulate(settings, 1000, timeToSimulate);
 
 % Retrieve the currents at each state simulated
 currents = arrayfun(@(state) state.current, states);

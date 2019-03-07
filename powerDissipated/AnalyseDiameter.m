@@ -4,6 +4,7 @@
 
 % Number of diameters to analyse
 N = 100;
+timeToSimulate = 6; % time in hours
 
 diameter = linspace(10^-4, 10^-2, N);
 
@@ -18,7 +19,7 @@ for i = 1:N
     settings = getDefaultSimulatorValues();
     settings.diameter = diameter(i);
     
-    [maximumValue(i), meanValue(i)] = stats(simulate(settings, 1000));
+    [maximumValue(i), meanValue(i)] = stats(simulate(settings, 1000, timeToSimulate));
 end
 
 % Plot average and maximum power dissipated

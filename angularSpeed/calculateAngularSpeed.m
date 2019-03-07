@@ -9,7 +9,8 @@ function rev = calculateAngularSpeed(values, timestep)
 % Output:   rev         the angular speed of the tether in revolutions per minute
 
 % Find the maximum torque from the system
-states = simulate(values, timestep);
+TIME_TO_SIMULATE = 6; % time in hours
+states = simulate(values, timestep, TIME_TO_SIMULATE);
 T_net = max(arrayfun(@(state) state.netTorque.length(), states));
 
 % Define constants

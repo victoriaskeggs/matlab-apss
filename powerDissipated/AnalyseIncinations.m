@@ -5,6 +5,7 @@
 % gravity.
 
 N = 100;
+timeToSimulate = 6; % time in hours
 
 inclinations = linspace(0, pi, N);
 
@@ -24,11 +25,11 @@ for i = 1:N
     settings.inclination = inclinations(i);
     settings.towardsEarth = false;
     
-    [velocityMax(i), velocityMean(i)] = stats(simulate(settings, 1000));
+    [velocityMax(i), velocityMean(i)] = stats(simulate(settings, 1000, timeToSimulate));
     
     settings.towardsEarth = true;
     
-    [gravityMax(i), gravityMean(i)] = stats(simulate(settings, 1000));
+    [gravityMax(i), gravityMean(i)] = stats(simulate(settings, 1000, timeToSimulate));
 end
 
 % Plot average and maximum power dissipated
