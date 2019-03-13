@@ -16,7 +16,7 @@ minBias = -10;
 while true
     % Run the simulation given the new maximum bias
     settings.bias = maxBias;
-    states = simulate(settings, 1000);
+    states = simulate(settings, 10000);
     
     % Extract the maximum Lorentz force calculated for this simulation
     extractedStates = stats(states);
