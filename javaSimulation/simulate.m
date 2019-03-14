@@ -6,6 +6,9 @@ function [states] = simulate(settings, simTimestep)
 % converts it into an array of structs, each struct holding the state of
 % the satellite at that time.
 
+% Input: simTimestep    period of time between two internal states of the
+%                       simulation (in ms) - around 1000
+
 import brownshome.apss.* java.time.*
 
 if settings.towardsEarth
@@ -17,7 +20,8 @@ end
 orbitCharacteristics = OrbitCharacteristics(settings.eccentricity, settings.sma, ...
     settings.inclination, settings.argOfPeriapsis, settings.trueAnomaly, settings.longOfAscendingNode);
 
-satellite = Satellite(cableFunction, settings.bias, settings.mass, settings.diameter, settings.conductivity);
+satellite = Satellite(cableFunction, settings.bias, settings.mass, ...
+    settings.diameter, settings.conductivity, settings.density);
 
 rawOutput = APSSSimulator.runHeadlessSimulation(satellite, orbitCharacteristics, ...
     Duration.ofHours(6), Duration.ofSeconds(5), Duration.ofMillis(simTimestep));
