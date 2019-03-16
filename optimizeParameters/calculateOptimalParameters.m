@@ -49,9 +49,11 @@ for i = 1:50
         inputSettings.mass - inputSettings.maxTetherMass - inputSettings.massOfWeight, inputSettings.massOfWeight);
     test = (stress .* strengthSafetyFactor) > maximumStress;
     
-    minLengths(test) = mid(test);
-    maxLengths(~test) = mid(~test);
+    minLengths(~test) = mid(~test);
+    maxLengths(test) = mid(test);
 end
+
+lengths(overStress) = (maxLengths + minLengths) ./ 2;
 
 figure;
 title("Largest possible length");
@@ -65,7 +67,6 @@ lengths(overStress) = (maxLengths + minLengths) ./ 2;
 [bestLength, maxIndex] = max(lengths);
 bestDiam = diameters(maxIndex);
 
-inputSettings = inputSettings;
 inputSettings.length = bestLength;
 inputSettings.diameter = bestDiam;
 
