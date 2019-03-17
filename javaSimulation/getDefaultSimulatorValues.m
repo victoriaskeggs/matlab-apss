@@ -15,7 +15,7 @@ function values = getDefaultSimulatorValues
         'conductivity', 19.7e6, ... % ohm-1 m-1
         'eccentricity', 0, ...      % 1
         'sma', 6.771*10^6, ...      % m
-        'inclination', 8 / 360 * 2 * pi, ...       % radians from polar
+        'inclination', 81 / 360 * 2 * pi, ...       % radians
         'argOfPeriapsis', 0, ...    % radians
         'trueAnomaly', 0, ...       % radians
         'longOfAscendingNode', 0);  % radians
